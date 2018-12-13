@@ -7,6 +7,12 @@ $(document).ready(function() {
     // select type field
    var $searchField = $('#search')
 
+   //select submit button
+   var $submitButton = $('#submit');
+    $searchField.prop('disabled',true)
+    $submitButton.attr('disabled', true).val('Searching...')
+
+
     // the AJAX part
     var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
     var animal = $searchField.val();
@@ -23,6 +29,9 @@ $(document).ready(function() {
       }); // end each
       photoHTML += '</ul>';
       $('#photos').html(photoHTML);
+      //enable text field again 
+      $searchField.prop('disabled',false);
+      $submitButton.attr('disabled', false).val('Search');
     }
     $.getJSON(flickerAPI, flickrOptions, displayPhotos);
 
